@@ -10,44 +10,54 @@ namespace Moviegram.Tests.Domain
         [TestMethod]
         public void CreateMovie()
         {
-            var mf = new MovieFactory();
-            var movie = mf.CreateMovie();
-            Assert.IsNotNull(movie);
+            using (var mf = new MovieFactory())
+            {
+                var movie = mf.CreateMovie();
+                Assert.IsNotNull(movie);
+            };
         }
 
         [TestMethod]
         public void CountShowtimes()
         {
-            var mf = new MovieFactory();
-            var movie = mf.CreateMovie();
-            int numShowtimes = movie.Showtimes.Count;
-            Assert.AreEqual(numShowtimes, 0);
+            using (var mf = new MovieFactory())
+            {
+                var movie = mf.CreateMovie();
+                int numShowtimes = movie.Showtimes.Count;
+                Assert.AreEqual(numShowtimes, 0);
+            }
         }
 
         [TestMethod]
         public void GetSetMovieProperties()
         {
-            var mf = new MovieFactory();
-            var movie = mf.CreateMovie();
-            movie.Title = "Test";
-            Assert.AreEqual(movie.Title, "Test");
+            using (var mf = new MovieFactory())
+            {
+                var movie = mf.CreateMovie();
+                movie.Title = "Test";
+                Assert.AreEqual(movie.Title, "Test");
+            }
         }
 
         [TestMethod]
         public void GetSetShowtimeProperties()
         {
-            var mf = new MovieFactory();
-            var movie = mf.CreateMovie();
-            var showtime = new Showtime {
-                Id = 1,
-                Time = DateTime.Now,
-                Channel="TestChannel"
-            };
-            movie.Showtimes.Add(showtime);
-            int numShowtimes = movie.Showtimes.Count;
-            Assert.AreEqual(numShowtimes, 1);
+            using (var mf = new MovieFactory())
+            {
+                var movie = mf.CreateMovie();
+                var showtime = new Showtime
+                {
+                    Id = 1,
+                    Time = DateTime.Now,
+                    Channel = "TestChannel"
+                };
+                movie.Showtimes.Add(showtime);
+                int numShowtimes = movie.Showtimes.Count;
 
-            Assert.AreEqual(movie.Showtimes[0].Channel, "TestChannel");
+                Assert.AreEqual(numShowtimes, 1);
+
+                Assert.AreEqual(movie.Showtimes[0].Channel, "TestChannel");
+            }
         }
 
     }

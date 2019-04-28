@@ -22,22 +22,27 @@ namespace Moviegram.Domain
 
         public Movie(int movieId) {
             // get the movie from the database
-            var db = new MovieDBContext(null);
-            var dbMovie = db.Movies.FirstOrDefault(x => x.Id == movieId);
-            // map db properties to domain model
-            if (dbMovie != null) {
-               Id = dbMovie.Id;
-                Title = dbMovie.Title;
-                Description = dbMovie.Description;
-                Image = dbMovie.Image;
-                Thumbnail = dbMovie.Thumbnail;
-            }
-
-            // map database showtimes to domain object
-            dbMovie.Showtimes.ForEach(x => Showtimes.Add(new Showtime
+            using (var db = new MovieDBContext(null))
             {
-                Id = x.Id, Time = x.Time, Channel = x.Channel
-            }));
+                var dbMovie = db.Movies.FirstOrDefault(x => x.Id == movieId);
+                // map db properties to domain model
+                if (dbMovie != null)
+                {
+                    Id = dbMovie.Id;
+                    Title = dbMovie.Title;
+                    Description = dbMovie.Description;
+                    Image = dbMovie.Image;
+                    Thumbnail = dbMovie.Thumbnail;
+                }
+
+                // map database showtimes to domain object
+                dbMovie.Showtimes.ForEach(x => Showtimes.Add(new Showtime
+                {
+                    Id = x.Id,
+                    Time = x.Time,
+                    Channel = x.Channel
+                }));
+            }
             
         }
     }
