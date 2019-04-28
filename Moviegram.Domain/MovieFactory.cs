@@ -88,15 +88,23 @@ namespace Moviegram.Domain
 
         }
 
+        Movie IMovieFactory.MovieFactory()
+        {
+            throw new NotImplementedException();
+        }
+
         // constructor with dependency injection of database context
         public MovieFactory(Moviegram.Database.MovieDBContext context)
         {
             _context = context;
         }
 
-        Movie IMovieFactory.MovieFactory()
+        // constructor without dependency injection
+        public MovieFactory()
         {
-            throw new NotImplementedException();
+            _context = new Database.MovieDBContext() ;
+
         }
+
     }
 }

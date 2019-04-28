@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 namespace Moviegram.Database
 {
-
     public class Movie
     {
         public int Id { get; set; }
