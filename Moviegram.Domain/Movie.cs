@@ -1,6 +1,8 @@
 ﻿using Moviegram.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
+using Moviegram.Database;
+using System.Linq;
 
 namespace Moviegram.Domain
 {
@@ -19,7 +21,18 @@ namespace Moviegram.Domain
         }
 
         public Movie(int movieId) {
-
+            // get the movie from the database
+            var db = new MovieDBContext(null);
+            var dbMovie = db.Movies.FirstOrDefault(x => x.Id == movieId);
+            // map db properties to domain model
+            if (dbMovie != null) {
+               Id = dbMovie.Id;
+                Title = dbMovie.Title;
+                Description = dbMovie.Description;
+                Image = dbMovie.Image;
+                Thumbnail = dbMovie.Thumbnail;
+            }
+            
         }
     }
 }
