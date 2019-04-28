@@ -11,6 +11,6 @@ namespace Moviegram.Domain.Interfaces
 
         Movie GetMovie(int movieId);
 
-        List<Movie> GetMovies();
+        List<Movie> GetMovies(string title, int limit, string keyword, string startdate, string enddate);
     }
 }

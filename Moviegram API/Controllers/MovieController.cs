@@ -16,9 +16,11 @@ namespace Moviegram_API.Controllers
         // GET /values
         [Route("/movies/list")]
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public ActionResult<string> Get(string title, int limit, string keyword, string startdate, string enddate)
         {
-            return new string[] { "value1", "value2" };
+            var mf = new Moviegram.Domain.MovieFactory();
+            var list = mf.GetMovies(title, limit, keyword, startdate, enddate);
+            return Newtonsoft.Json.JsonConvert.SerializeObject(list);
         }
 
         // GET api/values/5
@@ -32,7 +34,7 @@ namespace Moviegram_API.Controllers
 
 
         // ADMIN methods
-        // we're not building this right now, so just return unauthorised message because we have not build in authentication yet.
+        // we're not building this right now, so just return unauthorised message because we have not built in authentication yet.
 
         [Authorize]
         [Route("/movies/add")]
