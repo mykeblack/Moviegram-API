@@ -1,4 +1,5 @@
-﻿using Moviegram.Domain.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using Moviegram.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,8 @@ namespace Moviegram.Domain
 {
     public class MovieFactory : IMovieFactory, IDisposable
     {
+        private DbContext _context { get; set; }
+
         public Movie CreateMovie()
         {
             var movie = new Movie();
@@ -83,6 +86,12 @@ namespace Moviegram.Domain
             // if no movies found, this will return empty array
             return movieList;
 
+        }
+
+        // constructor with dependency injection of database context
+        public MovieFactory(Moviegram.Database.MovieDBContext context)
+        {
+            _context = context;
         }
 
         Movie IMovieFactory.MovieFactory()
