@@ -20,7 +20,7 @@ namespace Moviegram.Domain
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         public Movie GetMovie(int movieId)
@@ -46,9 +46,9 @@ namespace Moviegram.Domain
             {
 
                 // get filtered list of movies from the database
-                var dbList = _context.Movies.Where(x => x.Title == title || title == "")
-                                    .Where(x => x.Title.Contains(keyword) || keyword == "")
-                                    .Where(x => x.Description.Contains(keyword) || keyword == "")
+                var dbList = _context.Movies.Where(x => x.Title == title || string.IsNullOrWhiteSpace(title))
+                                    .Where(x => x.Title.Contains(keyword) || string.IsNullOrWhiteSpace(keyword))
+                                    .Where(x => x.Description.Contains(keyword) || string.IsNullOrWhiteSpace(keyword))
                                     .Where(x => x.Showtimes.Any(s => s.Time >= start) || start == DateTime.MinValue)
                                     .Where(x => x.Showtimes.Any(s => s.Time <= end) || end == DateTime.MaxValue)
                                     .Take(limit)
