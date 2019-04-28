@@ -11,6 +11,6 @@ namespace Moviegram.Database
         public string Description { get; set; }
         public string Image { get; set; }
         public string Thumbnail { get; set; }
-        public ICollection<Showtime> Showtimes { get; set; }
+        public List<Showtime> Showtimes { get; set; }
     }
 }

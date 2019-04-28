@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moviegram.Domain;
+using System;
 
 namespace Moviegram.Tests.Domain
 {
@@ -17,9 +18,37 @@ namespace Moviegram.Tests.Domain
         [TestMethod]
         public void CountShowtimes()
         {
-            Assert.IsTrue(true);
+            var mf = new MovieFactory();
+            var movie = mf.CreateMovie();
+            int numShowtimes = movie.Showtimes.Count;
+            Assert.AreEqual(numShowtimes, 0);
         }
 
+        [TestMethod]
+        public void GetSetMovieProperties()
+        {
+            var mf = new MovieFactory();
+            var movie = mf.CreateMovie();
+            movie.Title = "Test";
+            Assert.AreEqual(movie.Title, "Test");
+        }
+
+        [TestMethod]
+        public void GetSetShowtimeProperties()
+        {
+            var mf = new MovieFactory();
+            var movie = mf.CreateMovie();
+            var showtime = new Showtime {
+                Id = 1,
+                Time = DateTime.Now,
+                Channel="TestChannel"
+            };
+            movie.Showtimes.Add(showtime);
+            int numShowtimes = movie.Showtimes.Count;
+            Assert.AreEqual(numShowtimes, 1);
+
+            Assert.AreEqual(movie.Showtimes[0].Channel, "TestChannel");
+        }
 
     }
 }

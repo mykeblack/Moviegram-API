@@ -32,6 +32,12 @@ namespace Moviegram.Domain
                 Image = dbMovie.Image;
                 Thumbnail = dbMovie.Thumbnail;
             }
+
+            // map database showtimes to domain object
+            dbMovie.Showtimes.ForEach(x => Showtimes.Add(new Showtime
+            {
+                Id = x.Id, Time = x.Time, Channel = x.Channel
+            }));
             
         }
     }
