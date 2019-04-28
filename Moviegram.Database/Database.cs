@@ -11,9 +11,14 @@ namespace Moviegram.Database
         public MovieDBContext(DbContextOptions<MovieDBContext> options) : base(options)
         { }
 
-        // simple context contrutor without db options
-        public MovieDBContext() : base()
-        { }
+        public MovieDBContext()
+        {
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionbuilder)
+        {
+            optionbuilder.UseSqlite(@"Data Source=Moviegram.db");
+        }
 
         public DbSet<Movie> Movies { get; set; }
         public DbSet<Showtime> Showtimes { get; set; }

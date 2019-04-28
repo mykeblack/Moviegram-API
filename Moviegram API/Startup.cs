@@ -13,6 +13,7 @@ using Microsoft.Extensions.Options;
 using Moviegram.Domain;
 using Moviegram.Database;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http;
 
 namespace Moviegram
 {
@@ -29,8 +30,9 @@ namespace Moviegram
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            var connection = @"Server=(localdb)\mssqllocaldb;Database=Moviegram;Trusted_Connection=True;ConnectRetryCount=0";
-            services.AddDbContext<MovieDBContext> (options => options.UseSqlServer(connection));
+            var connection = "Data Source=Moviegram.db";
+            services.AddDbContext<MovieDBContext>
+                (options => options.UseSqlite(connection));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

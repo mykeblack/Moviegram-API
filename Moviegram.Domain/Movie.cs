@@ -22,7 +22,8 @@ namespace Moviegram.Domain
 
         public Movie(int movieId) {
             // get the movie from the database
-            using (var db = new MovieDBContext(null))
+            /*
+            using (var db = new MovieDBContext())
             {
                 var dbMovie = db.Movies.FirstOrDefault(x => x.Id == movieId);
                 // map db properties to domain model
@@ -43,7 +44,7 @@ namespace Moviegram.Domain
                     Channel = x.Channel
                 }));
             }
-            
+            */
         }
     }
 }
