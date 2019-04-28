@@ -21,10 +21,5 @@ namespace Moviegram.Domain
         public Movie(int movieId) {
 
         }
-
-        public static List<Movie> GetMovies() {
-            var movieList = new List<Movie>();
-            return movieList;
-        }
     }
 }

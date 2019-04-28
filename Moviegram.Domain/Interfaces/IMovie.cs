@@ -6,6 +6,6 @@ namespace Moviegram.Domain.Interfaces
 {
     interface IMovie<T>
     {
-
+        
     }
 }
