@@ -7,7 +7,7 @@ namespace Moviegram.Domain.Interfaces
     interface IMovieFactory
     {
         // creates an instance of the movie using a generic class
-        Movie GetMovie();
+        Movie MovieFactory();
 
         Movie GetMovie(int movieId);
 

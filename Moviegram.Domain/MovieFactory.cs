@@ -7,7 +7,7 @@ namespace Moviegram.Domain
 {
     public class MovieFactory : IMovieFactory
     {
-        public Movie GetMovie()
+        public Movie CreateMovie()
         {
             var movie = new Movie();
             return movie;
@@ -23,6 +23,11 @@ namespace Moviegram.Domain
         {
             var list = new List<Movie>();
             return list;
+        }
+
+        Movie IMovieFactory.MovieFactory()
+        {
+            throw new NotImplementedException();
         }
     }
 }

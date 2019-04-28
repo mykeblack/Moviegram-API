@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moviegram.Domain;
 
 namespace Moviegram.Tests.Domain
 {
@@ -8,7 +9,9 @@ namespace Moviegram.Tests.Domain
         [TestMethod]
         public void CreateMovie()
         {
-            Assert.IsTrue(true);
+            var mf = new MovieFactory();
+            var movie = mf.CreateMovie();
+            Assert.IsNotNull(movie);
         }
 
         [TestMethod]
